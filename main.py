@@ -3,7 +3,14 @@ from yt_dlp import YoutubeDL
 import time
 
 TWITCH_URL = "https://www.twitch.tv/"
-streamer_id_list: list[str] = ["woowakgood", "lilpaaaaaa", "gosegugosegu"]
+streamer_id_list: list[str] = [
+    "vo_ine",
+    "jingburger",
+    "lilpaaaaaa",
+    "cotton__123",
+    "gosegugosegu",
+    "viichan6"
+]
 thread_list: list[threading.Thread] = []
 
 
