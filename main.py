@@ -10,8 +10,14 @@ thread_list: list[threading.Thread] = []
 def record(streamer_id: str):
     print("start record: " + streamer_id)
 
-    with YoutubeDL() as ydl:
-        ydl.download([TWITCH_URL + streamer_id])
+    while True:
+        with YoutubeDL() as ydl:
+            try:
+                ydl.download([TWITCH_URL + streamer_id])
+                break
+            except:
+                print("not currently live")
+                time.sleep(5)
 
     print("end record: " + streamer_id)
 
@@ -29,10 +35,11 @@ def main():
     record_all()
 
     while True:
-        for th in thread_list:
+        for idx, th in enumerate(thread_list):
             if not th.is_alive():
-                th.start()
-        time.sleep(20)
+                thread_list[idx] = threading.Thread(
+                    target=record, args=(streamer_id_list[idx],)
+                )
 
 
 if __name__ == "__main__":
