@@ -1,7 +1,7 @@
-FROM python:3.11
+FROM python:3.12
 
-RUN apt update
-RUN apt install -y ffmpeg
+RUN apt-get update
+RUN apt-get install -y ffmpeg
 RUN pip install yt-dlp
 
 RUN mkdir -p /app
