@@ -1,6 +1,9 @@
 # vscode configuation files
 .vscode/
 
+# pycharm configuation files
+.idea
+
 # data files
 /videos
 
