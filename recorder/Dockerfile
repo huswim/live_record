@@ -1,7 +1,7 @@
-FROM python:3.12
+FROM alpine:3
 
-RUN apt-get update
-RUN apt-get install -y ffmpeg
+RUN apk update
+RUN apk add ffmpeg python3 py3-pip
 RUN pip install yt-dlp
 
 RUN mkdir -p /app
