@@ -1,0 +1,10 @@
+version: '3'
+
+name: live_record
+
+services:
+  recorder:
+    container_name: live_record
+    volumes:
+      - "/home/ubuntu/videos:/app/videos"
+    image: ghcr.io/huswim/live_record:main
