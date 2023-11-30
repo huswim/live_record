@@ -2,16 +2,9 @@ import threading
 from yt_dlp import YoutubeDL
 import time
 
+from SQLManager import SQLManager
+
 TWITCH_URL = "https://www.twitch.tv/"
-streamer_id_list: list[str] = [
-    "vo_ine",
-    "jingburger",
-    "lilpaaaaaa",
-    "cotton__123",
-    "gosegugosegu",
-    "viichan6",
-]
-thread_list: list[threading.Thread] = []
 
 
 def record(streamer_id: str):
@@ -27,6 +20,11 @@ def record(streamer_id: str):
 
 
 def main():
+    thread_list: list[threading.Thread] = []
+
+    manager = SQLManager("streamers.db")
+    streamer_id_list = manager.get_streamer_ids()
+
     for streamer_id in streamer_id_list:
         t_temp = threading.Thread(target=record, args=(streamer_id,))
         thread_list.append(t_temp)
