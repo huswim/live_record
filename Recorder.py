@@ -30,9 +30,29 @@ class Recorder(threading.Thread):
                     time.sleep(30)
 
 
+class RecorderManager:
+    def __init__(self, db_name: str):
+        self.manager = SQLManager(db_name)
+        self.thread_list: list[threading.Thread] = []
+
+    def start(self):
+        streamer_id_list = self.manager.get_streamer_ids()
+
+        for streamer_id in streamer_id_list:
+            t_temp = Recorder(streamer_id)
+            self.thread_list.append(t_temp)
+            t_temp.start()
+
+    def stop(self):
+        for thread in self.thread_list:
+            thread.join()
+
+
 def main():
-    recorder = Recorder("slientear")
-    recorder.start()
+    # recorder = Recorder("slientear")
+    # recorder.start()
+    manager = RecorderManager("streamers.db")
+    manager.start()
 
 
 if __name__ == "__main__":
