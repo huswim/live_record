@@ -43,8 +43,9 @@ class SQLManager:
 
 
 def main():
+    manager = SQLManager("streamers.db")
+
     if len(sys.argv) == 2 and sys.argv[1] == "show":
-        manager = SQLManager("streamers.db")
         print(manager.get_streamer_ids())
         return
 
@@ -55,8 +56,6 @@ def main():
 
     option = sys.argv[1]
     streamer_id = sys.argv[2]
-
-    manager = SQLManager("streamers.db")
 
     if option == "add":
         manager.add_streamer_id(streamer_id)
