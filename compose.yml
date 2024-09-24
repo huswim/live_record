@@ -1,0 +1,9 @@
+services:
+  live_record:
+    container_name: live_record
+    build: .
+    image: live_record:latest
+    volumes:
+      - type: bind
+        source: ./videos
+        target: /app/videos
